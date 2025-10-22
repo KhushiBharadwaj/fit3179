@@ -1,0 +1,69 @@
+
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Diverging bar: Indigenous (left) vs Non-Indigenous (right) by field.",
+  "width": "container",
+  "height": {"step": 22},
+  "data": {"url": "data/indigenous_field.csv", "format": {"type": "csv"}},
+  "transform": [
+    {"fold": ["Indigenous", "Non-Indigenous"], "as": ["Group", "CountRaw"]},
+    {"calculate": "toNumber(datum.CountRaw)", "as": "Count"},
+    {
+      "calculate": "datum.Group === 'Indigenous' ? -datum.Count : datum.Count",
+      "as": "SignedCount"
+    },
+    {
+      "joinaggregate": [{"op": "sum", "field": "Count", "as": "FieldTotal"}],
+      "groupby": ["BroadFieldOfEducation"]
+    },
+    {"calculate": "abs(datum.SignedCount)", "as": "AbsCount"},
+    {
+      "calculate": "datum.Group === 'Indigenous' ? -(datum.Count / datum.FieldTotal * 100) : (datum.Count / datum.FieldTotal * 100)",
+      "as": "SignedCount"
+    }
+  ],
+  "layer": [
+    { "mark": {"type": "rule", "color": "#cbd5e1"},
+      "encoding": { "x": {"value": 0} } },
+    {
+      "mark": {"type": "bar", "tooltip": true},
+      "encoding": {
+        "y": {
+          "field": "BroadFieldOfEducation",
+          "type": "nominal",
+          "title": "Field of Education",
+          "sort": "-x"
+        },
+        "x": {
+          "field": "SignedCount",
+          "type": "quantitative",
+          "scale": { "domain": [-100, 100]},
+          "axis": {
+            "title": "% of Students",
+            "format": ".1f"
+          }
+        },
+        "color": {
+          "field": "Group",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Indigenous", "Non-Indigenous"],
+            "range": ["#D3D3D3", "#808080"]
+          },
+          "title": null
+        },
+        "tooltip": [
+          {"field": "BroadFieldOfEducation", "title": "Field"},
+          {"field": "Group", "title": "Group"},
+          {"field": "AbsCount", "type": "quantitative", "title": "Students", "format": ","},
+          {"field": "PctWithinField", "type": "quantitative", "title": "% within field", "format": ".1f"}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": "transparent"},
+    "background": "transparent",
+    "legend": {"orient": "right"}
+  }
+}
