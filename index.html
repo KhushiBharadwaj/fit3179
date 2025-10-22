@@ -1,0 +1,84 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Higher Ed: Men vs Women (Australia)</title>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <img src="titlegraphic.svg" alt="education down under" class="title-image">
+  </header>
+
+
+<main class="stage">
+
+  <section id="box-donut" class="card">
+    <img src="img/title_citizenship.png" alt="" class="chart-title">
+    <div id="chart-donut" class="chart-box"></div>
+    <p class="chart-subtext">Most university students in Australia are domestic (around 76%), while international students account for roughly a quarter. This highlights the global pull of Australia’s education sector, with international enrolments forming a vital part of campus diversity and funding.
+</p>
+  </section>
+
+  <section id="box-figure" class="card">
+    <img src="graphic.svg" alt="half male half female" class="center-image">
+  </section>
+
+  <section id="box-diverging" class="card">
+    <img src="img/title_indigenous.png" alt="" class="chart-title">
+    <div id="chart-diverging" class="chart-box"></div>
+    <p class="chart-subtext">Indigenous students remain a small minority across higher education within the domestic population, though their presence is strongest in Society & Culture and Education. Engineering, IT, and Architecture continue to show the lowest Indigenous participation, underscoring ongoing equity gaps in technical disciplines.
+</p>
+  </section>
+
+
+  <section id="box-map-left" class="card">
+    <img src="img/title_male_map.png" alt="" class="chart-title">
+    <div id="chart-map-male" class="chart-box"></div>
+    <p class="chart-subtext">Male participation peaks in the Australian Captial Territory (16.7%) and New South Wales (15.8%), reflecting strong engagement in states with higher STEM enrolments. Tasmania records the lowest male rate at 14%, showing limited higher education participation in smaller regional economies.</p>
+  </section>
+
+  <section id="box-map-right" class="card">
+    <img src="img/title_female_map.png" alt="" class="chart-title">
+    <div id="chart-map-female" class="chart-box"></div>
+    <p class="chart-subtext">Women lead in higher education participation nationwide, with the Australian Capital Territory recording the highest share (19.1%) and Tasmania the lowest (14.5%). The consistent state-level advantage highlights women’s growing presence in tertiary learning across Australia.</p>
+  </section>
+
+
+  <section id="box-stacked" class="card">
+    <img src="img/title_gender_fields.png" alt="" class="chart-title">
+    <div id="chart-stacked" class="chart-box"></div>
+    <p class="chart-subtext">Health and Education fields are predominantly female, while Engineering and IT remain male-dominated. Creative Arts and Natural Sciences are the most balanced disciplines, showing gradual progress toward gender diversity across study fields.</p>
+  </section>
+
+  <section id="box-conclusion" class="card">
+    <img src="img/title_conclusion.png" alt="" class="conclusion-image">
+  </section>
+</main>
+
+
+
+  <footer class="footer">
+    <p>Author: Khushi Bharadwaj • Unit: FIT3179 •Date Published: 17th of October • Sources: Department of Education, ABS</p>
+  </footer>
+
+ 
+  <script>
+  vegaEmbed('#chart-donut',     'js/donut_citizenship.json', {actions:false});
+  vegaEmbed('#chart-diverging', 'js/diverging_indigenous.json', {actions:false});
+  vegaEmbed('#chart-map-male',  'js/map_male.json', {actions:false});
+  vegaEmbed('#chart-map-female','js/map.json', {actions:false});
+  vegaEmbed('#chart-stacked',   'js/stacked_bar.json', {actions:false});
+  </script>
+</body>
+</html>

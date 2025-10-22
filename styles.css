@@ -1,0 +1,101 @@
+:root{
+  --bg:#ffffff; --ink:#0f172a; --muted:#64748b; --card:#f8fafc; --border:#e2e8f0;
+  --pink:#f472b6; --blue:#60a5fa; --accent:#0ea5e9;
+  --female:55; 
+}
+*{box-sizing:border-box}
+html,body{margin:0; padding: 0; background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+
+
+.banner, .footer{padding:20px 16px;border-bottom:10px solid var(--border)}
+.footer{border-top:1px solid var(--border);border-bottom:none;color:var(--muted)}
+.banner h1{margin:0;font-size:1.1rem;font-weight:700;letter-spacing:.2px}
+
+
+.stage{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  grid-auto-rows: auto;
+  gap: 24px;
+  align-items: start;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+  grid-template-areas:
+    "donut   figure   diverging"
+    "mapL    .        mapR"
+    "stacked conclusion conclusion";
+}
+
+
+#box-donut      { grid-area: donut; }
+#box-figure     { grid-area: figure; }
+#box-diverging  { grid-area: diverging; }
+#box-map-left   { grid-area: mapL; }
+#box-map-right  { grid-area: mapR; }
+#box-stacked    { grid-area: stacked; }
+#box-conclusion { grid-area: conclusion; }
+
+.card{
+  display:grid;
+  grid-template-rows: auto auto auto;
+  gap: 8px;
+  align-content: start;
+  align-items: start;
+  background: transparent;
+  border: none;
+  padding: 8px 0;
+  min-width: 0;      
+  overflow:hidden;
+}
+
+
+.chart-title{ display:block; margin:0 auto 6px; width:80%; max-width:520px; height:auto; }
+.chart-box  { width:100%; min-height:340px; }
+.chart-subtext{ text-align:center; color:black; font-size:.95rem; line-height:1.35; margin:0 auto; max-width:720px; }
+
+
+#box-figure{ display:flex; flex-direction:column; align-items:center; justify-content:center; }
+
+
+.figure-wrap{
+  grid-area:figure;
+  display:grid;
+  grid-template-rows:auto auto auto;
+  justify-items:center;
+  align-items:start;
+  row-gap:8px;
+}
+
+.center-image {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15))
+            drop-shadow(0 0 8px rgba(96,165,250,0.3));
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+#box-diverging{
+    width: 500px;
+}
+
+
+
+.title-image {
+  display: block;
+  margin: 20px auto;
+  max-width: 50%;
+  height: auto;
+}
+
+.conclusion-image {
+  display: block;
+  width: 80%;  
+  max-width: 1000px; 
+  height: auto;    
+  margin: 0 auto; 
+  padding: 0;  
+}

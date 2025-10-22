@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 420,
+  "projection": {"type": "mercator", "center": [134, -25]},
+
+  "data": {
+    "url": "data/aus_states.topo.json",
+    "format": {"type": "topojson", "feature": "aus_states.topo.json"}
+  },
+
+  "transform": [
+    {
+      "lookup": "properties.STE_NAME21",
+      "from": {
+        "data": {"url": "data/male_enrolments.csv"},
+        "key": "State",
+        "fields": ["MaleParticipation"]
+      }
+    }
+  ],
+
+  "mark": {"type": "geoshape"},
+  "encoding": {
+    "color": {
+      "field": "MaleParticipation",
+      "type": "quantitative",
+      "title": "% male",
+      "scale": {
+        "domain": [14,20],
+        "range": ["#95AAD4", "#006EFF"]
+      },
+      "legend": {
+      "title": "% male",
+      "orient": "right",
+      "tickCount": 5,           
+      "labelFontSize": 11,      
+      "titleFontSize": 12,
+      "gradientLength": 150     
+    }
+    },
+    "tooltip": [
+      {"field": "properties.STE_NAME21", "title": "State"},
+      {"field": "MaleParticipation", "title": "% male", "format": ".1f"}
+    ]
+  },
+
+  "config": {"view": {"stroke": null}}
+}

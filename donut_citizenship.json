@@ -1,0 +1,47 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Donut: Domestic vs International",
+  "width": 320,
+  "height": 320,
+
+  "data": { "url": "data/citizenship_overall.csv", "format": {"type": "csv"} },
+
+  "mark": {
+    "type": "arc",
+    "innerRadius": 80,
+    "tooltip": true,
+    "stroke": "#fff",
+    "strokeWidth": 2,
+    "padAngle": 0.01,
+    "cornerRadius": 4
+  },
+
+  "encoding": {
+    "theta": {
+      "aggregate": "sum",
+      "field": "Count",
+      "type": "quantitative",
+      "stack": "normalize"         
+    },
+    "color": {
+      "field": "Group",
+      "type": "nominal",
+      "title": "Citizenship",
+      "scale": {
+        "domain": ["Domestic", "International"],
+        "range": ["#D3D3D3", "#808080"]  
+      }
+    },
+    "order": {"field":"Count","type":"quantitative","sort":"descending"},
+    "tooltip": [
+      {"field":"Group","title":"Citizenship"},
+      {"field":"Count","type":"quantitative","format":","}
+    ]
+  },
+
+  "config": {
+    "legend": {"orient":"right"},
+    "view": {"stroke":"transparent"},
+    "background": "transparent"
+  }
+}
